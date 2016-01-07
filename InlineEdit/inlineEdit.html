@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Inline edit</title>
+<style>
+body{
+    background-color: #234;
+    color: white;
+}
+.PortfolioTitle, .PortfolioTitle > input{
+    font-weight: 600;
+    color: #f90;
+    font-size: 32px;
+}
+.hidden{
+    display:none;
+}
+.icon{
+    color: #d80;
+}
+span.inlineEdit::before {
+    content: "\270E";
+    color: transparent;
+}
+span.inlineEdit:hover:before {
+    color: #fb3;
+}
+span.inlineEdit > input, span.inlineEdit > input.inlineEdit:focus{
+    border: 1px solid transparent;
+    background-color: transparent;
+}
+span.inlineEdit > input.inlineEdit::after{
+    content: "boo";
+    background-color: yellow;
+    color: red;
+    font-weight: bold;
+}
+</style>
+</head>
+<body>
+blah blah blah
+<p/>
+<span class="PortfolioTitle inlineEdit"><input type="text" value="Portfolio #1" onblur="savePortfolioName()" onkeyup="if (event.keyCode==13) savePortfolioName()"/></span>
+<span id="saveLabel" class="icon hidden">&#x1f4be; Saving...</span>
+
+<p/>
+
+blah blah blah
+
+
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+<script type="text/javascript">
+$(document).ready(function(){
+    $("#saveLabel").hide();
+});
+function savePortfolioName()
+{
+    $("#saveLabel").show();
+    // call some evil ajax instead
+    setTimeout(function(){
+        $("#saveLabel").hide();
+    }, 500);
+}
+</script>
+
+</body>
+</html>
